@@ -1,6 +1,11 @@
 package fr.taeron;
 
+import java.io.IOException;
+import java.util.Arrays;
+
 import javax.security.auth.login.LoginException;
+
+import org.apache.commons.io.FileUtils;
 
 import fr.taeron.bot.commands.CommandManager;
 import fr.taeron.bot.gui.GUI;
@@ -38,10 +43,17 @@ public class Bot {
 	}
 	
 	public Bot() throws LoginException, InterruptedException {
-		new GUI(this).init();
 		this.commandManager = new CommandManager();
 		instance = this;
-		builder = new JDABuilder(AccountType.BOT).setToken(Streamxd.token);
+		try {
+			if(!Config.CONFIG.exists()) {
+				FileUtils.writeLines(Config.CONFIG, Arrays.asList("enter token here"));
+			}
+			builder = new JDABuilder(AccountType.BOT).setToken(FileUtils.readFileToString(Config.CONFIG, "UTF-8"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		new GUI(this).init();
 		builder.addEventListener(new ChatListener());
 		builder.setGame(Game.watching("Use =help"));
 		bot = builder.buildBlocking().asBot();
