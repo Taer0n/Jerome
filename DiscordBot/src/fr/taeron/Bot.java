@@ -43,17 +43,18 @@ public class Bot {
 	}
 	
 	public Bot() throws LoginException, InterruptedException {
+		new GUI(this).init();
 		this.commandManager = new CommandManager();
 		instance = this;
 		try {
 			if(!Config.CONFIG.exists()) {
 				FileUtils.writeLines(Config.CONFIG, Arrays.asList("enter token here"));
+				throw new LoginException("Bot token not set");
 			}
 			builder = new JDABuilder(AccountType.BOT).setToken(FileUtils.readFileToString(Config.CONFIG, "UTF-8"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		new GUI(this).init();
 		builder.addEventListener(new ChatListener());
 		builder.setGame(Game.watching("Use =help"));
 		bot = builder.buildBlocking().asBot();

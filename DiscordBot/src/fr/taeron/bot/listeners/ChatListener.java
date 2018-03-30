@@ -15,9 +15,9 @@ public class ChatListener extends ListenerAdapter {
 		} else {
 			System.out.printf("[%s][%s] %s: %s\n", event.getGuild().getName(), event.getTextChannel().getName(),
 					event.getMember().getEffectiveName(), event.getMessage().getContentDisplay());
-			if (event.getMember().getEffectiveName().equalsIgnoreCase("depardieuQ_Q")) {
+			if (event.getMember().getEffectiveName().equalsIgnoreCase("depardieuQ_Q") || event.getMember().getUser().getId().equalsIgnoreCase("140207775077761024")) {
 				event.getChannel().sendMessage(
-						"Ta gueule paul sale pd t'as interdiction de t'approcher de Jérome sale malade mental");
+						"Ta gueule sale pd t'as interdiction de t'approcher de Jérome sale malade mental");
 				return;
 			} else if (event.getMessage().getContentRaw().startsWith(Config.PREFIX)) {
 				Bot.getInstance().getCommandManager().handleCommand(event.getTextChannel(), event.getMessage().getContentRaw());

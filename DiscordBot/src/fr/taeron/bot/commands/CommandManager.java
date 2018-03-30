@@ -5,8 +5,9 @@ import java.util.Arrays;
 
 import fr.taeron.Config;
 import fr.taeron.bot.commands.impl.CommandDox;
+import fr.taeron.bot.commands.impl.CommandEncoreEux;
+import fr.taeron.bot.commands.impl.CommandHelp;
 import fr.taeron.bot.commands.impl.CommandTheKairi;
-import fr.taeron.bot.commands.impl.HelpCommand;
 import net.dv8tion.jda.core.entities.TextChannel;
 
 public class CommandManager {
@@ -14,7 +15,7 @@ public class CommandManager {
 	private ArrayList<Command> registeredCommands;
 	
 	public CommandManager() {
-		registerCommands(new CommandDox(), new CommandTheKairi(), new HelpCommand());
+		registerCommands(new CommandDox(), new CommandTheKairi(), new CommandHelp(), new CommandEncoreEux());
 	}
 	
 	private void registerCommands(Command... commands) {

@@ -5,9 +5,9 @@ import fr.taeron.Config;
 import fr.taeron.bot.commands.Command;
 import net.dv8tion.jda.core.entities.TextChannel;
 
-public class HelpCommand extends Command {
+public class CommandHelp extends Command {
 
-	public HelpCommand() {
+	public CommandHelp() {
 		super("help", "Displays this thing", "help");
 	}
 

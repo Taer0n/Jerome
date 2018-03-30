@@ -12,7 +12,7 @@ public class CommandDox extends Command {
 
 	@Override
 	public boolean execute(TextChannel c, String[] args) {
-		int rand = Utils.randInt(1, 17);
+		int rand = Utils.randInt(1, 19);
 		c.sendFile(Utils.imageFromUrl("http://dev.qqindustries.xyz/" + rand + ".png"), "meme.png", null).complete();
 		return true;
 	}
