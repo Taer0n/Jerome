@@ -18,7 +18,7 @@ public class CommandHelp extends Command {
 	public boolean execute(TextChannel c, String[] args) {
 		String commands = "";
 		EmbedBuilder builder = new EmbedBuilder();
-		builder.setAuthor("Jérome", Bot.getInstance().getBot().getJDA().getUsers().get(0).getAvatarUrl() + "?size=256");
+		builder.setAuthor("Jérome", Bot.getInstance().getBot().getJDA().getSelfUser().getAvatarUrl() + "?size=256");
 		builder.setColor(Color.RED);
 		for(Command co : Bot.getInstance().getCommandManager().getRegisteredCommands()) {
 			commands = commands + "» " + Config.PREFIX + co.getName() + ": " + co.getDescription() + "\n";
