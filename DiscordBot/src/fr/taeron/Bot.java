@@ -43,7 +43,10 @@ public class Bot {
 	}
 	
 	public Bot() throws LoginException, InterruptedException {
-		new GUI(this).init();
+		System.out.println("Launching Jerome for OS: " + System.getProperty("os.name"));
+		if(System.getProperty("os.name").contains("Win")) {
+			new GUI(this).init();
+		}
 		this.commandManager = new CommandManager();
 		instance = this;
 		try {
