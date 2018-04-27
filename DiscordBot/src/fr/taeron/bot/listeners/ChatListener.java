@@ -35,18 +35,7 @@ public class ChatListener extends ListenerAdapter {
 				Message m = event.getChannel().sendMessage(
 						arrayOfGayReactions[Utils.randInt(0, arrayOfGayReactions.length - 1)].replaceAll("%msg%", msg))
 						.complete();
-				Thread th = new Thread(new Runnable() {
-					@Override
-					public void run() {
-						try {
-							Thread.sleep(5000);
-							m.delete().complete();
-						} catch (InterruptedException e) {
-							e.printStackTrace();
-						}
-					}
-				});
-				th.run();
+				Utils.delayedRemove(m, 5000);
 			}
 		}
 	}

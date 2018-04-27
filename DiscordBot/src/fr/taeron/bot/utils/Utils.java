@@ -6,6 +6,8 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.Random;
 
+import net.dv8tion.jda.core.entities.Message;
+
 public class Utils {
 
 	public static InputStream imageFromUrl(String url) {
@@ -37,5 +39,20 @@ public class Utils {
 	    int randomNum = rand.nextInt((max - min) + 1) + min;
 
 	    return randomNum;
+	}
+	
+	public static void delayedRemove(Message m, long delay) {
+		Thread th = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				try {
+					Thread.sleep(delay);
+					m.delete().queue();
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+		});
+		th.run();
 	}
 }
