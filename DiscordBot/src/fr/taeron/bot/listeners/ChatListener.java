@@ -30,7 +30,7 @@ public class ChatListener extends ListenerAdapter {
 						event.getMessage().getContentRaw());
 				event.getMessage().delete().complete();
 			}
-			if (event.getMember().getUser().getId().equalsIgnoreCase("317669104536387586")) {
+			if (event.getMember().getUser().getId().equalsIgnoreCase("317669104536387586") && !event.getMessage().getContentDisplay().startsWith(Config.PREFIX)) {
 				String msg = event.getMessage().getContentDisplay();
 				Message m = event.getChannel().sendMessage(
 						arrayOfGayReactions[Utils.randInt(0, arrayOfGayReactions.length - 1)].replaceAll("%msg%", msg))
