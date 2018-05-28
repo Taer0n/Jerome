@@ -9,6 +9,7 @@ import javax.swing.*;
 
 import fr.taeron.Bot;
 import fr.taeron.bot.utils.FinderUtil;
+import net.dv8tion.jda.core.entities.TextChannel;
 
 public class CommandPanel extends JPanel {
     
@@ -16,27 +17,29 @@ public class CommandPanel extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = -5384340893844526646L;
+	private String channelName = "";
 
 	public CommandPanel() {
 		JTextField field = new JTextField(50);
-		field.addActionListener(new ActionListener() {
-		    @Override
-		    public void actionPerformed(ActionEvent event) {
-		    	FinderUtil.findTextChannel("general").get(0).sendMessage(field.getText()).complete();
-		        field.setText("");
-		    }
-		});
+		field.addActionListener(event -> {
+            FinderUtil.findTextChannel(channelName).get(0).sendMessage(field.getText()).complete();
+            field.setText("");
+        });
 		add(field);
 		JComboBox comboBox = new JComboBox();
-		comboBox.addItem("test");
-		comboBox.addItem("test2");
-		comboBox.addItem("test3");
-		comboBox.addItemListener(new ItemListener() {
-			@Override
-			public void itemStateChanged(ItemEvent e) {
-				System.out.println("Item changé en " + e.getItem().toString());
+		new Thread(() -> {
+			try {
+				Thread.sleep(3000);
+				for(TextChannel textChannel : Bot.getInstance().getBot().getJDA().getGuilds().get(0).getTextChannels()){
+					comboBox.addItem(textChannel.getName());
+				}
+				comboBox.addItemListener(e -> channelName = e.getItem().toString());
+				add(comboBox);
+			} catch (InterruptedException e1) {
+				System.exit(0);
+				e1.printStackTrace();
 			}
-		});
-		add(comboBox);
+		}).start();
+
     }
 }

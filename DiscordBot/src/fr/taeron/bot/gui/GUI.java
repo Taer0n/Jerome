@@ -19,7 +19,6 @@ public class GUI extends JFrame {
     public GUI(Bot bot) {
         super();
         this.bot = bot;
-        console = new ConsolePanel();
     }
     
     public void init() {
@@ -37,8 +36,10 @@ public class GUI extends JFrame {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setTitle("Jérome");
         JTabbedPane tabs = new JTabbedPane();
-        tabs.add("Console", console);
         tabs.add("Bot Chat", new CommandPanel());
+        console = new ConsolePanel();
+
+        tabs.add("Console", console);
         getContentPane().add(tabs);
         pack();
         setLocationRelativeTo(null);

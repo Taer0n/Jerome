@@ -29,17 +29,15 @@ public class Bot {
 		} catch (LoginException | InterruptedException e) {
 			e.printStackTrace();
 			System.err.println("Unnable to connect the bot. Exiting in 5 seconds.");
-			new Thread() {
-				public void run() {
-					try {
-						sleep(5000);
-						System.exit(0);
-					} catch (InterruptedException e) {
-						System.exit(0);
-						e.printStackTrace();
-					}
-				}
-			}.start();
+			new Thread(() -> {
+                try {
+                    Thread.sleep(5000);
+                    System.exit(0);
+                } catch (InterruptedException e1) {
+                    System.exit(0);
+                    e1.printStackTrace();
+                }
+            }).start();
 		}
 	}
 	
