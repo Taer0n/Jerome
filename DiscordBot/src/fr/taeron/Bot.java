@@ -5,6 +5,7 @@ import java.util.Arrays;
 
 import javax.security.auth.login.LoginException;
 
+import fr.taeron.bot.anticheat.PokecordAntiBot;
 import org.apache.commons.io.FileUtils;
 
 import fr.taeron.bot.commands.CommandManager;
@@ -59,7 +60,8 @@ public class Bot {
 			e.printStackTrace();
 		}
 		builder.addEventListener(new ChatListener());
-		builder.setGame(Game.watching("Use =help"));
+		builder.addEventListener(new PokecordAntiBot());
+		builder.setGame(Game.watching("Q_Q Industries (=help)"));
 		bot = builder.buildBlocking().asBot();
 		//FinderUtil.findTextChannel("general", Bot.getInstance().getBot().getJDA().getGuilds().get(0)).get(0).sendMessage("Hello my d00ds").complete();
 	}

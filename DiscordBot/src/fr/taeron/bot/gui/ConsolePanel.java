@@ -26,7 +26,7 @@ public class ConsolePanel extends JPanel {
         
         JScrollPane pane = new JScrollPane();
         pane.setViewportView(text);
-        
+
         this.setLayout(new GridLayout(1,1));
         add(pane);
         setPreferredSize(new Dimension(400,300));

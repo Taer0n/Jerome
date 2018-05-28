@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import fr.taeron.Bot;
 import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.entities.Role;
 import net.dv8tion.jda.core.entities.TextChannel;
@@ -32,8 +33,9 @@ public class FinderUtil {
 
 	public final static String DISCORD_ID = "\\d{17,20}";
 
-	public static List<TextChannel> findTextChannel(String query, Guild guild) {
+	public static List<TextChannel> findTextChannel(String query) {
 		String id;
+		Guild guild = Bot.getInstance().getBot().getJDA().getGuilds().get(0);
 		if (query.matches("<#\\d+>")) {
 			id = query.replaceAll("<#(\\d+)>", "$1");
 			TextChannel tc = guild.getJDA().getTextChannelById(id);

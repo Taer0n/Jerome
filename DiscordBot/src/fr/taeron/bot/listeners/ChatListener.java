@@ -2,6 +2,7 @@ package fr.taeron.bot.listeners;
 
 import fr.taeron.Bot;
 import fr.taeron.Config;
+import fr.taeron.bot.utils.FinderUtil;
 import fr.taeron.bot.utils.Utils;
 import net.dv8tion.jda.core.entities.ChannelType;
 import net.dv8tion.jda.core.entities.Message;
@@ -36,6 +37,17 @@ public class ChatListener extends ListenerAdapter {
 						arrayOfGayReactions[Utils.randInt(0, arrayOfGayReactions.length - 1)].replaceAll("%msg%", msg))
 						.complete();
 				Utils.delayedRemove(m, 5000);
+			}
+			if(event.getMember().getUser().getId().equalsIgnoreCase("235088799074484224") && event.getChannel().getName().equalsIgnoreCase("general")){
+			    event.getMessage().delete().queue();
+            }
+            if(event.getMessage().getContentDisplay().startsWith("!play") && !event.getChannel().getName().equalsIgnoreCase("bot-commands")){
+			    event.getMessage().delete().queue();
+			    Utils.delayedRemove(event.getChannel().sendMessage("Hey " + event.getMessage().getMember().getAsMention() + ", va vite dans " + FinderUtil.findTextChannel("bot-commands").get(0).getAsMention() + " pour poster tes commandes avant que j'insulte tous tes morts").complete(), 5000);
+            }
+            if(!event.getMember().getUser().isBot() && event.getChannel().getName().equalsIgnoreCase("partages") && !event.getMessage().getContentDisplay().contains("http://") && !event.getMessage().getContentDisplay().contains("https://")){
+				event.getMessage().delete().queue();
+				Utils.delayedRemove(event.getChannel().sendMessage("Hey " + event.getMessage().getMember().getAsMention() + ", le principe du channel de partage c'est de partager des liens pas d'ouvrir ta grande gueule donc bouge").complete(), 5000);
 			}
 		}
 	}

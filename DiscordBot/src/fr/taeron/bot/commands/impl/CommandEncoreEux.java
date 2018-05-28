@@ -12,7 +12,7 @@ public class CommandEncoreEux extends Command {
 
 	@Override
 	public boolean execute(TextChannel c, String[] args) {
-		c.sendFile(Utils.imageFromUrl("http://dev.qqindustries.xyz/encoreeux.jpg"), "arabes.png", null).complete();
+		Utils.sendFileAsync(c, Utils.imageFromUrl("http://dev.qqindustries.xyz/encoreeux.jpg"), "arabes.png", null);
 		return true;
 	}
 }

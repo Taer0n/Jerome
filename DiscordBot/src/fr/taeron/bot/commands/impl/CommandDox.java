@@ -12,8 +12,8 @@ public class CommandDox extends Command {
 
 	@Override
 	public boolean execute(TextChannel c, String[] args) {
-		int rand = Utils.randInt(1, 19);
-		c.sendFile(Utils.imageFromUrl("http://149.202.230.170/" + rand + ".png"), "meme.png", null).queue();
+		int rand = Utils.randInt(1, 20);
+		Utils.sendFileAsync(c, Utils.imageFromUrl("http://149.202.230.170/" + rand + ".png"), "meme.png", null);
 		return true;
 	}
 }

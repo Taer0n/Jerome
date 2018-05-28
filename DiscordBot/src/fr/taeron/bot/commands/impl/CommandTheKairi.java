@@ -12,7 +12,7 @@ public class CommandTheKairi extends Command {
 
 	@Override
 	public boolean execute(TextChannel c, String[] args) {
-		c.sendFile(Utils.imageFromUrl("http://dev.qqindustries.xyz/YOUUUUUUUUUU.mp4"), "YOU.mp4", null).complete();
+		Utils.sendFileAsync(c, Utils.imageFromUrl("http://dev.qqindustries.xyz/YOUUUUUUUUUU.mp4"), "YOU.mp4", null);
 		return true;
 	}
 }

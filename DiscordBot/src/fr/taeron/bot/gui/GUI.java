@@ -3,9 +3,7 @@ package fr.taeron.bot.gui;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
-import javax.swing.JFrame;
-import javax.swing.JTabbedPane;
-import javax.swing.WindowConstants;
+import javax.swing.*;
 
 import fr.taeron.Bot;
 
@@ -25,6 +23,17 @@ public class GUI extends JFrame {
     }
     
     public void init() {
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (UnsupportedLookAndFeelException e) {
+            e.printStackTrace();
+        }
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setTitle("Jérome");
         JTabbedPane tabs = new JTabbedPane();
@@ -34,6 +43,7 @@ public class GUI extends JFrame {
         pack();
         setLocationRelativeTo(null);
         setVisible(true);
+        setMaximumSize(getSize());
         addWindowListener(new WindowListener() {
             @Override public void windowOpened(WindowEvent e) {}
             @Override public void windowClosing(WindowEvent e) {bot.shutdown();}

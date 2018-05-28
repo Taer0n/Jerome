@@ -49,6 +49,11 @@
       <type>pom</type>
       <scope>compile</scope>
     </dependency>
+      <dependency>
+          <groupId>net.dv8tion</groupId>
+          <artifactId>JDA</artifactId>
+          <version>3.5.1_339</version>
+      </dependency>
   </dependencies>
   <properties>
     <maven.compiler.source>1.8</maven.compiler.source>
